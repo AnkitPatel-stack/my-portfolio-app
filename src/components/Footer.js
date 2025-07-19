@@ -1,13 +1,14 @@
 "use client"
 import { Box, Container, Typography, Stack, IconButton, Divider, Grid } from "@mui/material"
-import { GitHub, LinkedIn, Twitter, Email, FavoriteOutlined } from "@mui/icons-material"
+import { GitHub, LinkedIn, Email, FavoriteOutlined } from "@mui/icons-material"
+import Instagram from "@mui/icons-material/Instagram"
 
 const Footer = () => {
   const socialLinks = [
-    { icon: <GitHub />, url: "https://github.com/ankitpatel", label: "GitHub" },
+    { icon: <GitHub />, url: "https://github.com/AnkitPatel-stack", label: "GitHub" },
     { icon: <LinkedIn />, url: "https://linkedin.com/in/ankitpatel", label: "LinkedIn" },
-    { icon: <Twitter />, url: "https://twitter.com/ankitpatel", label: "Twitter" },
-    { icon: <Email />, url: "mailto:ankit.patel@example.com", label: "Email" },
+    { icon: <Instagram />, url: "https://www.instagram.com/kiiitttttuuu___9701/", label: "Instagram" },
+    { icon: <Email />, url: "mailto:ankitpatellll782@gmail.com", label: "Email" },
   ]
 
   const quickLinks = [
@@ -100,13 +101,13 @@ const Footer = () => {
               Let's Connect
             </Typography>
             <Typography variant="body2" sx={{ mb: 2, opacity: 0.9 }}>
-              📧 ankit.patel@example.com
+              📧 ankitpatellll782@gmail.com
             </Typography>
             <Typography variant="body2" sx={{ mb: 2, opacity: 0.9 }}>
-              📱 +1 (555) 123-4567
+              📱 +91 7898428167
             </Typography>
             <Typography variant="body2" sx={{ opacity: 0.9 }}>
-              📍 San Francisco, CA
+              📍 Indore, Madhya Pradesh
             </Typography>
           </Grid>
         </Grid>
@@ -117,7 +118,7 @@ const Footer = () => {
           <Typography variant="body2" sx={{ opacity: 0.8 }}>
             © {new Date().getFullYear()} Ankit Patel. All rights reserved.
           </Typography>
-          <Stack direction="row" alignItems="center" spacing={1}>
+          {/* <Stack direction="row" alignItems="center" spacing={1}>
             <Typography variant="body2" sx={{ opacity: 0.8 }}>
               Made with
             </Typography>
@@ -125,7 +126,7 @@ const Footer = () => {
             <Typography variant="body2" sx={{ opacity: 0.8 }}>
               using Next.js & Material UI
             </Typography>
-          </Stack>
+          </Stack> */}
         </Stack>
       </Container>
     </Box>

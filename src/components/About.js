@@ -29,7 +29,7 @@ const About = () => {
         { name: "JavaScript/TypeScript", level: 90, color: "#F7DF1E" },
         { name: "Material UI & CSS", level: 88, color: "#1976D2" },
         { name: "Node.js & APIs", level: 82, color: "#339933" },
-        { name: "Git & DevOps", level: 85, color: "#F05032" },
+        { name: "Git ", level: 85, color: "#F05032" },
         { name: "UI/UX Design", level: 78, color: "#FF6B6B" },
     ]
 
@@ -170,7 +170,7 @@ const About = () => {
                                     </Avatar>
                                     <Box>
                                         <Typography variant="h5" fontWeight={700} color="primary.main">
-                                            Frontend Developer
+                                            Full Stack Developer
                                         </Typography>
                                         <Typography variant="body1" color="text.secondary">
                                             1+ Years Experience
