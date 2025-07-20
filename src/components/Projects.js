@@ -361,7 +361,6 @@
 
 
 
-
 "use client"
 import {
   Box,
@@ -470,8 +469,12 @@ const Projects = () => {
       id="projects"
       sx={{
         py: { xs: 8, md: 12 },
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        background: `
+          linear-gradient(135deg, #667eea 0%, #764ba2 100%),
+          radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)
+        `,
         position: "relative",
+        overflow: "hidden",
         "&::before": {
           content: '""',
           position: "absolute",
@@ -479,8 +482,9 @@ const Projects = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: "rgba(255, 255, 255, 0.1)",
+          background: "rgba(255, 255, 255, 0.05)",
           backdropFilter: "blur(8px)",
+          zIndex: 0,
         },
       }}
     >
@@ -492,9 +496,10 @@ const Projects = () => {
             sx={{
               mb: 2,
               color: "white",
-              fontWeight: 700,
-              fontSize: { xs: "2rem", md: "3rem" },
-              textShadow: "2px 2px 4px rgba(0,0,0,0.2)",
+              fontWeight: 800,
+              fontSize: { xs: "2.5rem", md: "3.5rem" },
+              textShadow: "2px 2px 8px rgba(0,0,0,0.3)",
+              letterSpacing: "0.5px",
             }}
           >
             My Projects
@@ -505,19 +510,25 @@ const Projects = () => {
             align="center"
             sx={{
               mb: 6,
-              color: "rgba(255,255,255,0.9)",
+              color: "rgba(255,255,255,0.85)",
               maxWidth: "700px",
               mx: "auto",
-              lineHeight: 1.6,
+              lineHeight: 1.7,
+              fontSize: { xs: "1rem", md: "1.1rem" },
             }}
           >
-            Selected work showcasing my skills and experience
+            Selected work showcasing my skills and experience in building modern web applications
           </Typography>
 
-          <Grid container spacing={3}>
+          <Grid container spacing={3} sx={{ justifyContent: "center" }}>
             {projects.map((project) => (
-              <Grid item xs={12} sm={6} lg={4} key={project.title}>
-                <Box sx={{ position: "relative" }}>
+              <Grid item xs={12} sm={6} lg={4} key={project.title} sx={{ display: "flex" }}>
+                <Box sx={{
+                  position: "relative",
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                }}>
                   {project.featured && (
                     <Box
                       sx={{
@@ -527,11 +538,13 @@ const Projects = () => {
                         zIndex: 2,
                         background: "linear-gradient(45deg, #FF6B6B, #4ECDC4)",
                         color: "white",
-                        padding: "3px 12px",
-                        fontSize: "0.7rem",
-                        fontWeight: 600,
-                        borderRadius: "4px",
-                        boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
+                        padding: "4px 16px",
+                        fontSize: "0.75rem",
+                        fontWeight: 700,
+                        borderRadius: "20px",
+                        boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.5px",
                       }}
                     >
                       Featured
@@ -539,30 +552,37 @@ const Projects = () => {
                   )}
                   <Card
                     sx={{
-                      height: "100%",
+                      width: "100%",
                       display: "flex",
                       flexDirection: "column",
-                      background: "rgba(255, 255, 255, 0.95)",
-                      border: "1px solid rgba(255, 255, 255, 0.2)",
-                      borderRadius: 3,
-                      transition: "all 0.3s ease",
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+                      background: "rgba(255, 255, 255, 0.97)",
+                      border: "none",
+                      borderRadius: "12px",
+                      transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                      overflow: "hidden",
                       "&:hover": {
-                        transform: "translateY(-5px)",
-                        boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+                        transform: "translateY(-8px)",
+                        boxShadow: "0 16px 48px rgba(0,0,0,0.15)",
                       },
                     }}
                   >
-                    <Box sx={{ position: "relative", overflow: "hidden" }}>
+                    <Box sx={{
+                      position: "relative",
+                      overflow: "hidden",
+                      height: "200px",
+                    }}>
                       <CardMedia
                         component="img"
-                        height="180"
                         image={project.image}
                         alt={project.title}
                         sx={{
-                          transition: "transform 0.5s ease",
+                          height: "100%",
+                          width: "100%",
+                          objectFit: "cover",
+                          transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                           "&:hover": {
-                            transform: "scale(1.05)",
+                            transform: "scale(1.1)",
                           },
                         }}
                       />
@@ -573,7 +593,7 @@ const Projects = () => {
                           left: 0,
                           right: 0,
                           bottom: 0,
-                          background: "linear-gradient(45deg, rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.7))",
+                          background: "linear-gradient(to bottom, rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.8))",
                           opacity: 0,
                           transition: "opacity 0.3s ease",
                           display: "flex",
@@ -584,31 +604,35 @@ const Projects = () => {
                           },
                         }}
                       >
-                        <Stack direction="row" spacing={1}>
-                          <Tooltip title="View Live">
+                        <Stack direction="row" spacing={1.5}>
+                          <Tooltip title="View Live" arrow>
                             <IconButton
                               href={project.liveUrl}
                               target="_blank"
                               sx={{
                                 backgroundColor: "rgba(255,255,255,0.2)",
                                 color: "white",
+                                transition: "all 0.3s ease",
                                 "&:hover": {
                                   backgroundColor: "rgba(255,255,255,0.3)",
+                                  transform: "scale(1.1)",
                                 },
                               }}
                             >
                               <Launch fontSize="small" />
                             </IconButton>
                           </Tooltip>
-                          <Tooltip title="View Code">
+                          <Tooltip title="View Code" arrow>
                             <IconButton
                               href={project.githubUrl}
                               target="_blank"
                               sx={{
                                 backgroundColor: "rgba(255,255,255,0.2)",
                                 color: "white",
+                                transition: "all 0.3s ease",
                                 "&:hover": {
                                   backgroundColor: "rgba(255,255,255,0.3)",
+                                  transform: "scale(1.1)",
                                 },
                               }}
                             >
@@ -619,15 +643,22 @@ const Projects = () => {
                       </Box>
                     </Box>
 
-                    <CardContent sx={{ flexGrow: 1, p: 2 }}>
+                    <CardContent sx={{
+                      flexGrow: 1,
+                      p: 3,
+                      display: "flex",
+                      flexDirection: "column",
+                    }}>
                       <Typography
                         variant="h6"
                         component="h3"
                         gutterBottom
                         sx={{
-                          fontWeight: 600,
+                          fontWeight: 700,
                           color: "text.primary",
-                          mb: 1,
+                          mb: 1.5,
+                          fontSize: "1.25rem",
+                          lineHeight: 1.3,
                         }}
                       >
                         {project.title}
@@ -637,32 +668,41 @@ const Projects = () => {
                         color="text.secondary"
                         paragraph
                         sx={{
-                          fontSize: "0.9rem",
+                          fontSize: "0.95rem",
                           mb: 2,
-                          lineHeight: 1.5,
+                          lineHeight: 1.6,
+                          flexGrow: 1,
                         }}
                       >
                         {project.description}
                       </Typography>
-                      <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                      <Stack
+                        direction="row"
+                        spacing={1}
+                        flexWrap="wrap"
+                        useFlexGap
+                        sx={{ mt: "auto" }}
+                      >
                         {project.technologies.map((tech) => (
                           <Chip
                             key={tech}
                             label={tech}
                             size="small"
                             sx={{
-                              background: "linear-gradient(45deg, #667eea, #764ba2)",
+                              background: "linear-gradient(135deg, #667eea, #764ba2)",
                               color: "white",
-                              fontSize: "0.65rem",
-                              fontWeight: 500,
+                              fontSize: "0.7rem",
+                              fontWeight: 600,
                               mb: 0.5,
+                              height: "24px",
+                              borderRadius: "4px",
                             }}
                           />
                         ))}
                       </Stack>
                     </CardContent>
 
-                    <CardActions sx={{ p: 2, pt: 0, gap: 1 }}>
+                    <CardActions sx={{ p: 2, pt: 0, gap: 1.5 }}>
                       <Button
                         variant="contained"
                         startIcon={<Visibility />}
@@ -671,13 +711,18 @@ const Projects = () => {
                         size="small"
                         fullWidth
                         sx={{
-                          background: "linear-gradient(45deg, #667eea, #764ba2)",
-                          fontWeight: 500,
-                          fontSize: "0.75rem",
-                          py: 0.8,
+                          background: "linear-gradient(135deg, #667eea, #764ba2)",
+                          fontWeight: 600,
+                          fontSize: "0.8rem",
+                          py: 1,
+                          borderRadius: "6px",
+                          boxShadow: "none",
+                          "&:hover": {
+                            boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
+                          },
                         }}
                       >
-                        Demo
+                        Live Demo
                       </Button>
                       <Button
                         variant="outlined"
@@ -687,14 +732,19 @@ const Projects = () => {
                         size="small"
                         fullWidth
                         sx={{
-                          borderColor: "primary.main",
-                          color: "primary.main",
-                          fontWeight: 500,
-                          fontSize: "0.75rem",
-                          py: 0.8,
+                          borderColor: "#667eea",
+                          color: "#667eea",
+                          fontWeight: 600,
+                          fontSize: "0.8rem",
+                          py: 1,
+                          borderRadius: "6px",
+                          "&:hover": {
+                            backgroundColor: "rgba(102, 126, 234, 0.08)",
+                            borderColor: "#5a6fd4",
+                          },
                         }}
                       >
-                        Code
+                        View Code
                       </Button>
                     </CardActions>
                   </Card>
